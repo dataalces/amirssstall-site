@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>amirssstall — drawings</title>
+  <title>Amir's Stall — drawings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" />
@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="site-title" href="#top">amirssstall</a>
+    <a class="site-title" href="#top">Amir's Stall</a>
     <nav class="site-nav" id="site-nav">
       <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
       <a href="#about" class="nav-link" data-page="about">About</a>
@@ -22,11 +22,10 @@
   <main id="top">
     <!-- INTRO / HERO -->
     <section class="hero" data-panel="gallery">
-      <p class="eyebrow">Drawings on paper</p>
-      <h1 class="hero-title">Work on<br /><span class="ital">paper</span>.</h1>
+      <p class="eyebrow">Drawings</p>
+      <h1 class="hero-title"><span class="ital">Finished Drawings</span></h1>
       <p class="hero-intro">
-        A gathering of drawings — line, graphite, and ink. Click any piece to
-        view it full-size. Right-click to save.
+        Click on images for high resolution display.
       </p>
     </section>
 
@@ -50,11 +49,11 @@
         </figure>
         <figure class="art">
           <img src="assets/drawings/fishers-of-men.png" alt="Fishers of Men" loading="lazy" />
-          <figcaption>Fishers of Men, 2024</figcaption>
+          <figcaption>Fishers of Men, 2025</figcaption>
         </figure>
         <figure class="art">
           <img src="assets/drawings/gatekeeper.png" alt="Gatekeeper" loading="lazy" />
-          <figcaption>Gatekeeper</figcaption>
+          <figcaption>Gatekeeper, 2024</figcaption>
         </figure>
       </div>
     </section>
@@ -64,13 +63,8 @@
       <div class="prose">
         <h2>About</h2>
         <p>
-          Write a short paragraph here about who you are and what you draw.
-          What pulls you to the page — the subjects, the materials, the reason
-          you keep coming back to it.
-        </p>
-        <p>
-          This is a good place for a second paragraph: where you're based, how
-          long you've been drawing, what you're working toward.
+          I'm an electrical engineer. I enjoy drawing, writing, and gardening.
+          This site serves as a platform to showcase results I think are worth sharing.
         </p>
       </div>
     </section>
@@ -79,18 +73,30 @@
     <section class="panel" id="contact" data-panel-content="contact">
       <div class="prose">
         <h2>Contact</h2>
-        <p>Reach me at the links below.</p>
-        <ul class="links">
-          <li><a href="mailto:you@example.com">Email</a></li>
-          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
-        </ul>
-        <p class="muted-note">Replace these with your real email and handles.</p>
+        <form class="contact-form" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="subject" value="New message from Amir's Stall" data-remove-prefix />
+
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required />
+
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required />
+
+          <label for="contact-subject">Subject</label>
+          <input id="contact-subject" name="message_subject" type="text" required />
+
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="7" required></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 amirssstall</p>
+    <p>© 2026 Amir's Stall</p>
   </footer>
 
   <!-- LIGHTBOX -->
