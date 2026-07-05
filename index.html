@@ -6,14 +6,23 @@
   <title>Amir's Stall — drawings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="site-title" href="#top">Amir's Stall</a>
     <nav class="site-nav" id="site-nav">
-      <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
+      <div class="nav-dropdown" id="gallery-dropdown">
+        <button class="nav-link nav-dropdown-toggle is-current" type="button" data-page="finished" aria-haspopup="true" aria-expanded="false">
+          Gallery <span class="nav-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-menu" role="menu" aria-label="Gallery categories">
+          <a href="#finished-illustrations" class="dropdown-link" data-page="finished" role="menuitem">Finished Illustrations</a>
+          <a href="#working-illustrations" class="dropdown-link" data-page="working" role="menuitem">Working Illustrations</a>
+          <a href="#sketches" class="dropdown-link" data-page="sketches" role="menuitem">Sketches</a>
+        </div>
+      </div>
       <a href="#about" class="nav-link" data-page="about">About</a>
       <a href="#contact" class="nav-link" data-page="contact">Contact</a>
     </nav>
@@ -21,16 +30,16 @@
 
   <main id="top">
     <!-- INTRO / HERO -->
-    <section class="hero" data-panel="gallery">
+    <section class="hero" data-panel="finished">
       <p class="eyebrow">Drawings</p>
-      <h1 class="hero-title"><span class="ital">Finished Drawings</span></h1>
+      <h1 class="hero-title"><span class="ital">Finished Illustrations</span></h1>
       <p class="hero-intro">
         Click on images for high resolution display.
       </p>
     </section>
 
-    <!-- GALLERY PANEL -->
-    <section class="panel is-active" id="gallery" data-panel-content="gallery">
+    <!-- FINISHED ILLUSTRATIONS PANEL -->
+    <section class="panel is-active" id="finished-illustrations" data-panel-content="finished">
       <div class="gallery" id="gallery-grid">
         <!--
           ============================================================
@@ -55,6 +64,24 @@
           <img src="assets/drawings/gatekeeper.png" alt="Gatekeeper" loading="lazy" />
           <figcaption>Gatekeeper, 2024</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- WORKING ILLUSTRATIONS PANEL -->
+    <section class="panel" id="working-illustrations" data-panel-content="working">
+      <div class="placeholder-panel">
+        <p class="eyebrow">Working Illustrations</p>
+        <h2>Working Illustrations</h2>
+        <p>To be populated shortly.</p>
+      </div>
+    </section>
+
+    <!-- SKETCHES PANEL -->
+    <section class="panel" id="sketches" data-panel-content="sketches">
+      <div class="placeholder-panel">
+        <p class="eyebrow">Sketches</p>
+        <h2>Sketches</h2>
+        <p>To be populated shortly.</p>
       </div>
     </section>
 
@@ -112,24 +139,56 @@
 
   <script>
     (function () {
-      // ---- Tab navigation (single-page, no reload) ----
-      const links = document.querySelectorAll('.nav-link');
+      // ---- Navigation (single-page, no reload) ----
+      const pageLinks = document.querySelectorAll('[data-page]');
+      const navLinks = document.querySelectorAll('.nav-link');
       const panels = document.querySelectorAll('.panel');
       const hero = document.querySelector('.hero');
+      const galleryDropdown = document.getElementById('gallery-dropdown');
+      const galleryToggle = document.querySelector('.nav-dropdown-toggle');
+      const galleryPages = ['finished', 'working', 'sketches'];
+
+      function closeGalleryMenu() {
+        if (!galleryDropdown || !galleryToggle) return;
+        galleryDropdown.classList.remove('is-open');
+        galleryToggle.setAttribute('aria-expanded', 'false');
+      }
 
       function showPanel(name) {
         panels.forEach(p => p.classList.toggle('is-active', p.dataset.panelContent === name));
-        links.forEach(l => l.classList.toggle('is-current', l.dataset.page === name));
-        // hero only shows above the gallery
-        if (hero) hero.style.display = (name === 'gallery') ? '' : 'none';
+        navLinks.forEach(link => {
+          if (link.classList.contains('nav-dropdown-toggle')) {
+            link.classList.toggle('is-current', galleryPages.includes(name));
+          } else {
+            link.classList.toggle('is-current', link.dataset.page === name);
+          }
+        });
+        // hero only shows above the finished illustrations gallery
+        if (hero) hero.style.display = (name === 'finished') ? '' : 'none';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      links.forEach(link => {
+      pageLinks.forEach(link => {
         link.addEventListener('click', e => {
           e.preventDefault();
+
+          if (link.classList.contains('nav-dropdown-toggle')) {
+            galleryDropdown.classList.toggle('is-open');
+            galleryToggle.setAttribute('aria-expanded', galleryDropdown.classList.contains('is-open') ? 'true' : 'false');
+            return;
+          }
+
           showPanel(link.dataset.page);
+          closeGalleryMenu();
         });
+      });
+
+      if (galleryDropdown) {
+        galleryDropdown.addEventListener('mouseleave', closeGalleryMenu);
+      }
+
+      document.addEventListener('click', e => {
+        if (galleryDropdown && !galleryDropdown.contains(e.target)) closeGalleryMenu();
       });
 
       // ---- Lightbox ----
