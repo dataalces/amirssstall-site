@@ -26,13 +26,14 @@ body {
 .site-header {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 34px 32px 24px;
+  padding: 34px 32px 26px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   position: sticky;
   top: 0;
-  background: linear-gradient(var(--bg) 78%, rgba(244, 242, 237, 0));
+  background: linear-gradient(var(--bg) 86%, rgba(244, 242, 237, 0));
+  border-bottom: 1px solid var(--line);
   z-index: 20;
 }
 .site-title {
@@ -45,16 +46,19 @@ body {
 }
 .site-nav {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 28px;
 }
 .nav-link {
+  display: inline-flex;
+  align-items: baseline;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.86rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  padding: 0 0 4px;
+  line-height: 1;
+  padding: 0 0 6px;
   border: 0;
   border-bottom: 1.5px solid transparent;
   background: none;
@@ -67,39 +71,50 @@ body {
 
 .nav-dropdown {
   position: relative;
-  padding-bottom: 14px;
-  margin-bottom: -14px;
+  display: inline-flex;
+  align-items: baseline;
+  padding-bottom: 18px;
+  margin-bottom: -18px;
 }
 .nav-dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
   gap: 5px;
 }
 .nav-caret {
-  font-size: 0.75rem;
+  display: inline-block;
+  font-size: 0.68rem;
   line-height: 1;
-  transform: translateY(1px);
+  transform: translateY(-1px) rotateX(0deg);
+  transform-origin: 50% 45%;
+  opacity: 1;
+  transition: opacity 0.22s ease, transform 0.32s ease;
+}
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown:focus-within .nav-caret,
+.nav-dropdown.is-open .nav-caret {
+  opacity: 0;
+  transform: translateY(-4px) rotateX(90deg);
 }
 .nav-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   right: 0;
   min-width: 230px;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.97);
   border: 1px solid var(--line);
   box-shadow: 0 18px 48px -32px rgba(23, 23, 23, 0.45);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-4px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  transform: translateY(-6px) scale(0.985);
+  transform-origin: top right;
+  transition: opacity 0.18s ease, transform 0.22s ease, visibility 0.18s ease;
 }
 .nav-dropdown:hover .nav-menu,
 .nav-dropdown:focus-within .nav-menu,
 .nav-dropdown.is-open .nav-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 .dropdown-link {
   display: block;
@@ -124,22 +139,26 @@ main {
 }
 
 /* ---------- Hero ---------- */
-.hero { padding: 52px 0 68px; }
+.hero {
+  padding: 40px 0 36px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--line);
+}
 .eyebrow {
   color: var(--accent);
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 0 0 22px;
+  margin: 0 0 20px;
 }
 .hero-title {
   font-family: "Libre Baskerville", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(2.8rem, 8.5vw, 6.4rem);
-  line-height: 1.08;
-  letter-spacing: -0.055em;
-  margin: 0 0 24px;
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
   max-width: 900px;
 }
 .hero-title .ital {
@@ -196,25 +215,25 @@ main {
 /* ---------- Placeholder panels ---------- */
 .placeholder-panel {
   max-width: 900px;
-  padding: 52px 0 80px;
+  padding: 40px 0 80px;
 }
 .placeholder-panel h2 {
   font-family: "Libre Baskerville", Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(2.8rem, 8.5vw, 6.4rem);
-  line-height: 1.08;
-  letter-spacing: -0.055em;
-  margin: 0 0 24px;
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
 }
-.placeholder-panel p {
+.placeholder-panel p:not(.eyebrow) {
   color: var(--muted);
   font-size: 1.05rem;
   margin: 0;
 }
 
 /* ---------- Prose (About / Contact) ---------- */
-.prose { max-width: 640px; padding-top: 24px; }
+.prose { max-width: 640px; padding-top: 40px; }
 .prose h2 {
   font-family: "Libre Baskerville", Georgia, serif;
   font-style: italic;
@@ -351,12 +370,12 @@ main {
   .gallery { columns: 2; }
 }
 @media (max-width: 620px) {
-  .site-header { padding: 24px 20px 16px; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .site-header { padding: 24px 20px 18px; flex-direction: column; gap: 14px; align-items: flex-start; }
   .site-nav { gap: 18px; flex-wrap: wrap; }
   .nav-menu { left: 0; right: auto; }
   main { padding: 0 20px 72px; }
   .gallery { columns: 1; }
-  .hero { padding: 32px 0 48px; }
+  .hero { padding: 32px 0 32px; }
   .placeholder-panel { padding: 32px 0 72px; }
   .lb-nav { width: 44px; height: 44px; font-size: 1.6rem; }
   .lb-prev { left: 12px; }
