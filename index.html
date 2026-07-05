@@ -3,54 +3,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>amirssstall.org</title>
+  <title>amirssstall — drawings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="site-title" href="index.html">amirssstall.org</a>
-
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+    <a class="site-title" href="#top">amirssstall</a>
+    <nav class="site-nav" id="site-nav">
+      <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
+      <a href="#about" class="nav-link" data-page="about">About</a>
+      <a href="#contact" class="nav-link" data-page="contact">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <p class="eyebrow">Personal website</p>
-      <h1>Welcome to amirssstall.org</h1>
-      <p class="intro">
-        This is a personal website for writing, projects, notes, and anything else I want to keep in one place.
+  <main id="top">
+    <!-- INTRO / HERO -->
+    <section class="hero" data-panel="gallery">
+      <p class="eyebrow">Drawings &amp; studies</p>
+      <h1 class="hero-title">Work on<br /><span class="ital">paper</span>.</h1>
+      <p class="hero-intro">
+        A gathering of drawings — line, graphite, and ink. Click any piece to
+        view it full-size. Right-click to save.
       </p>
     </section>
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>
-        Write a short paragraph here about who you are, what you work on, and what this site is for.
-      </p>
+    <!-- GALLERY PANEL -->
+    <section class="panel is-active" id="gallery" data-panel-content="gallery">
+      <div class="gallery" id="gallery-grid">
+        <!--
+          ============================================================
+          HOW TO ADD YOUR OWN DRAWINGS:
+          1. Upload your image files to the repo (same place as this file).
+          2. Copy one <figure> block below.
+          3. Change  src="..."  to your file name (e.g. src="drawing1.jpg").
+          4. Change the <figcaption> text to the title of the piece.
+          The lightbox, zoom, and right-click-to-save all work automatically.
+          ============================================================
+        -->
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80" alt="Study one" loading="lazy" />
+          <figcaption>Study I</figcaption>
+        </figure>
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=1200&q=80" alt="Study two" loading="lazy" />
+          <figcaption>Study II</figcaption>
+        </figure>
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=1200&q=80" alt="Study three" loading="lazy" />
+          <figcaption>Study III</figcaption>
+        </figure>
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1200&q=80" alt="Study four" loading="lazy" />
+          <figcaption>Study IV</figcaption>
+        </figure>
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1552529532-13d4b3b7b76a?w=1200&q=80" alt="Study five" loading="lazy" />
+          <figcaption>Study V</figcaption>
+        </figure>
+        <figure class="art">
+          <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1200&q=80" alt="Study six" loading="lazy" />
+          <figcaption>Study VI</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <p>
-        This section can hold engineering projects, writing projects, experiments, or personal notes.
-      </p>
+    <!-- ABOUT PANEL -->
+    <section class="panel" id="about" data-panel-content="about">
+      <div class="prose">
+        <h2>About</h2>
+        <p>
+          Write a short paragraph here about who you are and what you draw.
+          What pulls you to the page — the subjects, the materials, the reason
+          you keep coming back to it.
+        </p>
+        <p>
+          This is a good place for a second paragraph: where you're based, how
+          long you've been drawing, what you're working toward.
+        </p>
+      </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>
-        Add your preferred contact information here.
-      </p>
+    <!-- CONTACT PANEL -->
+    <section class="panel" id="contact" data-panel-content="contact">
+      <div class="prose">
+        <h2>Contact</h2>
+        <p>Reach me at the links below.</p>
+        <ul class="links">
+          <li><a href="mailto:you@example.com">Email</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+        <p class="muted-note">Replace these with your real email and handles.</p>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 amirssstall.org</p>
+    <p>© 2026 amirssstall</p>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+    <figure class="lb-stage">
+      <img id="lb-img" src="" alt="" />
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8250;</button>
+  </div>
+
+  <script>
+    (function () {
+      // ---- Tab navigation (single-page, no reload) ----
+      const links = document.querySelectorAll('.nav-link');
+      const panels = document.querySelectorAll('.panel');
+      const hero = document.querySelector('.hero');
+
+      function showPanel(name) {
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.panelContent === name));
+        links.forEach(l => l.classList.toggle('is-current', l.dataset.page === name));
+        // hero only shows above the gallery
+        if (hero) hero.style.display = (name === 'gallery') ? '' : 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          showPanel(link.dataset.page);
+        });
+      });
+
+      // ---- Lightbox ----
+      const figures = Array.from(document.querySelectorAll('.gallery .art'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCap = document.getElementById('lb-caption');
+      const btnClose = document.getElementById('lb-close');
+      const btnPrev = document.getElementById('lb-prev');
+      const btnNext = document.getElementById('lb-next');
+      let index = 0;
+
+      function open(i) {
+        index = i;
+        const img = figures[i].querySelector('img');
+        const cap = figures[i].querySelector('figcaption');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCap.textContent = cap ? cap.textContent : '';
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function step(dir) {
+        open((index + dir + figures.length) % figures.length);
+      }
+
+      figures.forEach((fig, i) => {
+        fig.addEventListener('click', () => open(i));
+      });
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', e => { e.stopPropagation(); step(-1); });
+      btnNext.addEventListener('click', e => { e.stopPropagation(); step(1); });
+      lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
+      });
+    })();
+  </script>
 </body>
 </html>
