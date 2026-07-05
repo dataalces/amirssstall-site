@@ -195,16 +195,17 @@ main {
 
 /* ---------- Placeholder panels ---------- */
 .placeholder-panel {
-  max-width: 640px;
-  padding: 32px 0 80px;
+  max-width: 900px;
+  padding: 52px 0 80px;
 }
 .placeholder-panel h2 {
   font-family: "Libre Baskerville", Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(2.1rem, 5vw, 3.2rem);
-  letter-spacing: -0.035em;
-  margin: 0 0 18px;
+  font-size: clamp(2.8rem, 8.5vw, 6.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  margin: 0 0 24px;
 }
 .placeholder-panel p {
   color: var(--muted);
@@ -356,6 +357,7 @@ main {
   main { padding: 0 20px 72px; }
   .gallery { columns: 1; }
   .hero { padding: 32px 0 48px; }
+  .placeholder-panel { padding: 32px 0 72px; }
   .lb-nav { width: 44px; height: 44px; font-size: 1.6rem; }
   .lb-prev { left: 12px; }
   .lb-next { right: 12px; }
